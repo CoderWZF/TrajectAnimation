@@ -1,0 +1,12 @@
+
+platform :ios, '8.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+
+target 'TrajectoryAnimationDemo' do
+
+pod 'ZFTrajectAnimation', '~> 0.0.1'
+
+
+end
