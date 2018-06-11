@@ -6,7 +6,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'TrajectoryAnimationDemo' do
 
-pod 'ZFTrajectAnimation', '~> 0.0.1'
+pod 'ZFTrajectAnimation', '~> 0.0.2'
 
 
 end

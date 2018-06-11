@@ -92,10 +92,6 @@ static const CGFloat KAnimationDuration = 5.0f;
     [self.layer addSublayer:self.animitionLayer];
     //给layer添加动画
     [self.animitionLayer addAnimation:self.animation forKey:@""];
-    //移除动画
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(KAnimationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self stopAnimation];
-    });
 }
 
 - (void)stopAnimation {

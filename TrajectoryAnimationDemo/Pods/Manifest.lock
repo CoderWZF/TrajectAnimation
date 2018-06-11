@@ -1,16 +1,16 @@
 PODS:
-  - ZFTrajectAnimation (0.0.1)
+  - ZFTrajectAnimation (0.0.2)
 
 DEPENDENCIES:
-  - ZFTrajectAnimation (~> 0.0.1)
+  - ZFTrajectAnimation (~> 0.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ZFTrajectAnimation
 
 SPEC CHECKSUMS:
-  ZFTrajectAnimation: c7d80e69e8f20343edeeda59eb69faac2e9797a5
+  ZFTrajectAnimation: ada7844697746ebde214b38b0225abdd58ad247a
 
-PODFILE CHECKSUM: 89a167e24ccbeb58d4e5974aaaaf8e0336326551
+PODFILE CHECKSUM: 407288827d5c6a805de8f4243611fc3c7c8f132a
 
 COCOAPODS: 1.5.3
