@@ -4,7 +4,6 @@
 
 ```
 TrajectoryView *trajectoryView = [[TrajectoryView alloc] initWithParentView:_demoView];
-
 trajectoryView.borderColor = [UIColor redColor];
 trajectoryView.borderWidth = 10;
 trajectoryView.animationDuration = 2;
