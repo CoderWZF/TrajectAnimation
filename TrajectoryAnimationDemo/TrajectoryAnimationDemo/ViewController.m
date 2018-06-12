@@ -24,6 +24,9 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     TrajectoryView *view = [[TrajectoryView alloc] initWithParentView:_demoView];
+    view.borderColor = [UIColor redColor];
+    view.borderWidth = 10;
+    view.animationDuration = 2;
     [view startAnimation];
 }
 
