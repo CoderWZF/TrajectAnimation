@@ -10,6 +10,10 @@
 
 @interface TrajectoryView : UIView
 
+@property (nonatomic, strong) UIColor *borderColor;
+@property (nonatomic, assign) CGFloat borderWidth;
+@property (nonatomic, assign) CGFloat animationDuration;
+
 - (instancetype)initWithParentView:(UIView*)parentView;
 - (void)startAnimation ;
 - (void)stopAnimation;

@@ -8,6 +8,7 @@
 
 #import "TrajectoryView.h"
 @interface TrajectoryView ()
+@property (nonatomic, assign) CGFloat cornerRadius;
 ///需要给谁添加动画
 @property (nonatomic, strong) UIView *parentView;
 ///动画
@@ -30,6 +31,7 @@ static const CGFloat KAnimationDuration = 5.0f;
 - (instancetype)initWithParentView:(UIView*)parentView {
     self = [super initWithFrame:parentView.frame];
     if (self) {
+        self.cornerRadius = parentView.layer.cornerRadius;
         self.parentView = parentView;
         [parentView.superview insertSubview:self belowSubview:parentView];
     }
@@ -40,7 +42,7 @@ static const CGFloat KAnimationDuration = 5.0f;
 - (CABasicAnimation *)animation {
     if (!_animation) {
         _animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        _animation.duration = KAnimationDuration;   // 持续时间
+        _animation.duration = self.animationDuration ? self.animationDuration : KAnimationDuration;   // 持续时间
         _animation.fromValue = @(0); // 从 0 开始
         _animation.toValue = @(1);   // 到 1 结束
         // 保持动画结束时的状态
@@ -55,20 +57,23 @@ static const CGFloat KAnimationDuration = 5.0f;
 
 - (UIBezierPath *)linePath {
     if (!_linePath) {
-//        _linePath = [UIBezierPath bezierPathWithRect:self.bounds];
-        //矩形从rect起点到终点
-        CGFloat oriX = self.bounds.origin.x;
-        CGFloat oriY = self.bounds.origin.y;
-        CGFloat width = self.bounds.size.width;
-        CGFloat height = self.bounds.size.height;
-        _linePath = [UIBezierPath bezierPath];
-        //移动到起点位置
-        [_linePath moveToPoint:CGPointMake(oriX+width/2.0, oriY)];
-        [_linePath addLineToPoint:CGPointMake(oriX+width, oriY)];
-        [_linePath addLineToPoint:CGPointMake(oriX+width, oriY+height)];
-        [_linePath addLineToPoint:CGPointMake(oriX, oriY+height)];
-        [_linePath addLineToPoint:CGPointMake(oriX, oriY)];
-        [_linePath closePath];
+        if (_cornerRadius) {
+            _linePath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.cornerRadius];
+        } else {
+            //矩形从rect起点到终点
+            CGFloat oriX = self.bounds.origin.x;
+            CGFloat oriY = self.bounds.origin.y;
+            CGFloat width = self.bounds.size.width;
+            CGFloat height = self.bounds.size.height;
+            _linePath = [UIBezierPath bezierPath];
+            //移动到起点位置
+            [_linePath moveToPoint:CGPointMake(oriX+width/2.0, oriY)];
+            [_linePath addLineToPoint:CGPointMake(oriX+width, oriY)];
+            [_linePath addLineToPoint:CGPointMake(oriX+width, oriY+height)];
+            [_linePath addLineToPoint:CGPointMake(oriX, oriY+height)];
+            [_linePath addLineToPoint:CGPointMake(oriX, oriY)];
+            [_linePath closePath];
+        }
     }
     return _linePath;
 }
@@ -78,8 +83,8 @@ static const CGFloat KAnimationDuration = 5.0f;
     if (!_animitionLayer) {
         _animitionLayer = [CAShapeLayer layer];
         _animitionLayer.path = self.linePath.CGPath;
-        _animitionLayer.lineWidth = kBorderWidth;
-        _animitionLayer.strokeColor = KBorderColor.CGColor;
+        _animitionLayer.lineWidth = self.borderWidth ? self.borderWidth : kBorderWidth;
+        _animitionLayer.strokeColor = (self.borderColor ? self.borderColor : KBorderColor).CGColor;
     }
     return _animitionLayer;
 }

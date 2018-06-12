@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+//    [UIBezierPath bezierPathWithRoundedRect:self.demoView.bounds cornerRadius:self.cornerRadius]
 }
 
 

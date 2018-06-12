@@ -8,7 +8,7 @@
 
 #import "TrajectoryView.h"
 @interface TrajectoryView ()
-@property (nonatomic, assign) CGFloat cornerRaduis;
+@property (nonatomic, assign) CGFloat cornerRadius;
 ///需要给谁添加动画
 @property (nonatomic, strong) UIView *parentView;
 ///动画
@@ -31,7 +31,7 @@ static const CGFloat KAnimationDuration = 5.0f;
 - (instancetype)initWithParentView:(UIView*)parentView {
     self = [super initWithFrame:parentView.frame];
     if (self) {
-        self.cornerRaduis = parentView.layer.cornerRaduis;
+        self.cornerRadius = parentView.layer.cornerRadius;
         self.parentView = parentView;
         [parentView.superview insertSubview:self belowSubview:parentView];
     }
@@ -57,8 +57,8 @@ static const CGFloat KAnimationDuration = 5.0f;
 
 - (UIBezierPath *)linePath {
     if (!_linePath) {
-        if (_cornerRaduis) {
-            _linePath = [UIBezierPath bezierPath]
+        if (_cornerRadius) {
+            _linePath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:self.cornerRadius];
         } else {
             //矩形从rect起点到终点
             CGFloat oriX = self.bounds.origin.x;
@@ -83,7 +83,7 @@ static const CGFloat KAnimationDuration = 5.0f;
     if (!_animitionLayer) {
         _animitionLayer = [CAShapeLayer layer];
         _animitionLayer.path = self.linePath.CGPath;
-        _animitionLayer.lineWidth = self.borderWidth : self.borderWidth : kBorderWidth;
+        _animitionLayer.lineWidth = self.borderWidth ? self.borderWidth : kBorderWidth;
         _animitionLayer.strokeColor = (self.borderColor ? self.borderColor : KBorderColor).CGColor;
     }
     return _animitionLayer;
